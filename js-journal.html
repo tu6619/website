@@ -59,6 +59,7 @@
   <ul>
     <li><a href="MY GUIDE TO DEBUGGING JAVASCRIPT">My Guide to Debugging JavaScript</a></li>
   <li><a href="MY GUIDE TO AUTHORING NEW KATA ON CODEWARS">My Guide to Authoring Kata on Codewars</a></li>
+    <li><a href="MY GUIDE TO BACKREFERENCING IN RGULAR EXPRESSIONS">My Guide to Backreferencing in Regular Expressions</a></li>
   </ul>
  <div>
    <p>_________________________________________________</p>
@@ -167,6 +168,56 @@
 <li>A comprehensive list of the <a href="http://www.codewars.com/topics/kata-best-practices">best Kata practices</a> found in the code wars docs.</li>
 <li>Plenty of good tips in the code wars <a href="https://bkaestner.github.io/codewars-rules/">Codex</a>
 </li>
+</ul>
+          
+<p>_________________________________________________</p>
+   
+   <br><br><br>
+   
+ <div class="post">  
+   <p>8 December, 2015</p>
+   <a name="#MY GUIDE TO BACKREFERENCING IN REGULAR EXPRESSIONS"></a>
+       
+
+     <section class="main-content">
+      <h4>
+<a id="my-guide-to-backreferencing-in-regular-expressions" class="anchor" href="#my-guide-to-backreferencing-in-regular-expressions" aria-hidden="true"><span class="octicon octicon-link"></span></a>MY GUIDE TO BACKREFERENCING IN REGULAR EXPRESSIONS</h4>
+
+<p><img src="http://cdn.business2community.com/wp-content/uploads/2014/04/url.gif" alt=""></p>
+
+<p>Today I learned about regex backreferencing and numbered capture groups.</p>
+
+<p>As well as grouping a section of a regular expression, parentheses also create a numbered capture group, which can be referred to in the replacement string using a backreference.</p>
+
+<p>Consider the following string:</p>
+
+<pre><code>var string = 'I work every day except monday, tuesday, wednesday and thursday';
+</code></pre>
+
+<p>If I want to remove the <code>'day'</code> from <code>'monday, tuesday, wednesday and thursday'</code>, I can use the <code>.replace()</code> method with a regex:</p>
+
+<pre><code>var res = string.replace(/\b(\w{3,})day\b/g, '$1')
+</code></pre>
+
+<p><code>/\b(\w{3,})day\b/g</code> will match 'day' at the end of a 6+ letter word.
+<code>(\w{3,})</code> will store the 3+ alphanumeric symbols accessed by the <code>\w{3,}</code>. That is all of the letters before <code>'day'</code> for each day of the week (so the <code>'mon'</code> of <code>'monday'</code>, the <code>'tues'</code> of <code>'tuesday'</code> etc.).
+<code>'$1'</code> will backreference what was stored by the first parentheses and therefore replace <code>'monday'</code> with <code>'mon'</code>, tuesday with <code>'tues'</code> etc.</p>
+
+<p>So after all that, returning <code>res</code> gives:</p>
+
+<pre><code>'I work every day except mon, tues, wednes and thurs'
+</code></pre>
+
+<p><code>$1-$99</code> can backreference up to 99 sets of parentheses in JavaScript.</p>
+
+<h3>
+<a id="further-resources" class="anchor" href="#further-resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Further Resources</h3>
+
+<ul>
+<li>
+<a href="https://regex101.com">Regular Expressions 101</a> explains exactly what your regex code will do to a string as you type it. Save and send links for comparison and feedback.</li>
+<li><a href="http://www.regular-expressions.info/brackets.html">Use of parentheses for grouping and capturing in regex code</a></li>
+<li><a href="http://www.regular-expressions.info/brackets.html">Using numbered backreferences</a></li>
 </ul>
         
 
